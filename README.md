@@ -22,7 +22,7 @@ sudo apt install php php-cli php-mbstring unzip curl php-xml composer php-mysql 
 
 sudo mysql -u root -p
 
-
+#know you should setup your own db
 
 cd /tmp
 
