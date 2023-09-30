@@ -42,3 +42,14 @@ sudo a2enmod rewrite
 
 sudo systemctl restart apache2
 
+#Navigate to wp.hmdkhkbz.ir for compelete wordpress setup.
+
+# Configure Prometheus/node_exporter on this host.
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.0/node_exporter-1.3.0.linux-amd64.tar.gz
+
+tar xvfz node_exporter-1.3.0.linux-amd64.tar.gz
+
+sudo mv node_exporter-1.3.0.linux-amd64/node_exporter /usr/local/bin
+
+rm -rf node_exporter-1.3.0.linux-amd64*
