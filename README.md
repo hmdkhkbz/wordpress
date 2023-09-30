@@ -97,3 +97,32 @@ sudo systemctl enable filebeat
 
 sudo systemctl start filebeat
 
+# iptables hardening
+
+sudo iptables -A INPUT -p tcp --dport 9100 -j DROP
+
+sudo iptables -A INPUT -p tcp --dport 33060 -j DROP
+
+sudo iptables -A INPUT -p tcp --dport 3306 -j DROP
+
+sudo iptables -A INPUT -p tcp -s 127.0.0.1 --dport 9100 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.112.210 --dport 9100 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.101.104 --dport 9100 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 127.0.0.1 --dport 33060 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.112.210 --dport 33060 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.101.104 --dport 33060 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 127.0.0.1 --dport 3306 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.112.210 --dport 3306 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp -s 188.121.101.104 --dport 3306 -j ACCEPT
+
+sudo apt-get install -y iptables-persistent
+
+sudo netfilter-persistent save
