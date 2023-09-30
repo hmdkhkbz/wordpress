@@ -126,3 +126,11 @@ sudo iptables -A INPUT -p tcp -s 188.121.101.104 --dport 3306 -j ACCEPT
 sudo apt-get install -y iptables-persistent
 
 sudo netfilter-persistent save
+
+# Setup Certificate using certbot
+
+sudo apt install certbot python3-certbot-apache -y
+
+sudo certbot --apache -d wp.hmdkhkbz.ir
+
+
