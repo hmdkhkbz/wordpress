@@ -53,3 +53,24 @@ tar xvfz node_exporter-1.3.0.linux-amd64.tar.gz
 sudo mv node_exporter-1.3.0.linux-amd64/node_exporter /usr/local/bin
 
 rm -rf node_exporter-1.3.0.linux-amd64*
+
+echo -e "[Unit]\nDescription=Node Exporter\n\n[Service]\nExecStart=/usr/local/bin/node_exporter\n\n[Install]\nWantedBy=default.target" | sudo tee /etc/systemd/system/node_exporter.service
+
+
+sudo systemctl daemon-reload
+
+sudo systemctl start node_exporter
+
+sudo systemctl enable node_exporter
+
+# Configure iptables for access only from prometheus to 9100 of wordpress host.
+
+apt install iptables -y
+
+sudo iptables -A INPUT -p tcp -s 188.121.101.104 --dport 9100 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp --dport 9100 -j DROP
+
+sudo apt-get install iptables-persistent -y
+
+sudo netfilter-persistent save
