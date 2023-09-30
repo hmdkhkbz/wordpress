@@ -34,6 +34,7 @@ sudo mv wordpress /var/www/html/wordpress
 
 sudo chown -R www-data:www-data /var/www/html/wordpress
 
+#edit "/etc/apache2/sites-available/wordpress.conf" as you need.
 
 sudo a2ensite wordpress
 
