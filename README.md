@@ -35,4 +35,9 @@ sudo mv wordpress /var/www/html/wordpress
 sudo chown -R www-data:www-data /var/www/html/wordpress
 
 
+sudo a2ensite wordpress
+
+sudo a2enmod rewrite
+
+sudo systemctl restart apache2
 
