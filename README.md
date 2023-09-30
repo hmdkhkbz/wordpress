@@ -74,3 +74,21 @@ sudo iptables -A INPUT -p tcp --dport 9100 -j DROP
 sudo apt-get install iptables-persistent -y
 
 sudo netfilter-persistent save
+
+# Configure ELK/filebeat on wordpress host.
+
+rm /etc/resolv.conf
+
+echo "nameserver 10.202.10.202 " | sudo tee -a /etc/resolv.conf
+
+echo "nameserver 10.202.10.102 " | sudo tee -a /etc/resolv.conf
+
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch |sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+
+sudo apt update
+
+sudo apt install filebeat -y
+
+#configure "/etc/filebeat/filebeat.yml" for send logs to logstash
