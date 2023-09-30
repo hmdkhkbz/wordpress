@@ -92,3 +92,8 @@ sudo apt update
 sudo apt install filebeat -y
 
 #configure "/etc/filebeat/filebeat.yml" for send logs to logstash
+
+sudo systemctl enable filebeat
+
+sudo systemctl start filebeat
+
