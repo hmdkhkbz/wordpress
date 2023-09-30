@@ -1,5 +1,5 @@
 CREATE DATABASE wordpress_db;
-CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'arvan@321';
+CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'arvan@321987654321HH';
 GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
