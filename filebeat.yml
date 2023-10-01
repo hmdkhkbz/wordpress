@@ -2,7 +2,37 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/*.log 
+    - /var/log/filebeat/*
 
-output.logstash:
-  hosts: ["188.121.112.210:5044"] 
+- type: filestream
+  id: my-filestream-id
+  enabled: false
+  paths:
+    - /var/log/*.log
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+setup.kibana:
+
+output.elasticsearch:
+  hosts: ["188.121.112.210:9200"]
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+
+logging:
+  to_files: true
+  files:
+    path: /var/log/filebeat
+    name: filebeat.log
+    keepfiles: 7
+    permissions: 0644
